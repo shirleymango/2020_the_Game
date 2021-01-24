@@ -36,6 +36,20 @@ public class Main {
 				new Event("The first Americans receiving the COVID-19 vaccine", "12/14/2020")));
 		in = new Scanner(System.in);
 		
+		//Printing introduction
+		System.out.println("~-~-~-~-~-~-~-~-~-");
+		System.out.println("| 2020: THE GAME |");
+		System.out.println("-~-~-~-~-~-~-~-~-~");
+		System.out.println("Test your knowledge of the 2020 timeline.");
+		System.out.println("-----------------------------------------------------------------");
+		
+		//Start game
+		System.out.println("Type START to begin.");
+		String input = in.nextLine();
+		while (!input.equals("START")) {
+			System.out.println("Type START to begin.");
+		}
+		
 		//Instantiating the first pair of events
 		int index = getRandomIndex();
 		event1 = events.get(index);
@@ -57,12 +71,14 @@ public class Main {
 			System.out.println("Event 2: " + event2.getName());
 			System.out.println("Date: ?");
 			System.out.println("Does Event 2 occur BEFORE or AFTER Event 1?");
-			String input = in.nextLine();
-			
+			input = in.nextLine();
+			while (!input.equals("BEFORE") && !input.equals("AFTER")) {
+				System.out.println("Invalid input. Please enter only either BEFORE or AFTER.");
+				input = in.nextLine();
+			}
 			//Checking the answer
 			checkAnswer(input);
 			System.out.println("-----------------------------------------------------------------");
-			System.out.println();
 			
 			//Setting Event 1 to be the previous Event 2 and setting Event 2 to a new random event
 			setEvent1();
@@ -80,15 +96,15 @@ public class Main {
 	public static void checkAnswer(String ans) {
 		if (event2.getDate().compareTo(event1.getDate()) < 0 && ans.equals("BEFORE")) {
 			score += 100;
-			System.out.println("Correct. " + event2.getName() + " happened on " + event2.getDate());
+			System.out.println("Correct! " + event2.getName() + " happened on " + event2.getDate() + ".");
 		}
 		else if (event2.getDate().compareTo(event1.getDate()) > 0 && ans.equals("AFTER")) {
 			score += 100;
-			System.out.println("Correct. " + event2.getName() + " happened on " + event2.getDate());
+			System.out.println("Correct! " + event2.getName() + " happened on " + event2.getDate() + ".");
 		}
 		else {
 			numOfLives--;
-			System.out.println("Incorrect. " + event2.getName() + " happened on " + event2.getDate());
+			System.out.println("Incorrect. " + event2.getName() + " happened on " + event2.getDate() + ".");
 		}
 	}
 	
