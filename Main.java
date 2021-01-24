@@ -8,6 +8,8 @@ public class Main {
 	private static int score = 0;
 	private static int numOfLives = 3;
 	
+	//TODO perhaps give points based on time, show time line at end of game
+	
 	public static void main(String[] args) {
 		events = new ArrayList<>(Arrays.asList(new Event("Prince Harry and Meghan Markle quit the royal family", "01/08/2020"),
 				new Event("The start of the first impeachment trial of Donald Trump", "01/16/2020"),
@@ -42,6 +44,7 @@ public class Main {
 		System.out.println("-~-~-~-~-~-~-~-~-~");
 		System.out.println("Test your knowledge of the 2020 timeline.");
 		System.out.println("-----------------------------------------------------------------");
+		System.out.println("Instructions: Given the name and date of Event 1 and only the name of Event 2, you must guess whether Event 2 happened BEFORE or AFTER Event 1. \nYou have 3 lives and for each incorrect answer, you will lose a life. Good luck!");
 		
 		//Start game
 		System.out.println("Type START to begin.");
@@ -60,7 +63,11 @@ public class Main {
 		
 		while (numOfLives > 0) {
 			//Printing the current score and number of lives
-			System.out.println("Number of Lives: " + numOfLives);
+			System.out.print("Lives: ");
+			for (int i = 0; i < numOfLives; i++) {
+				System.out.print("♥ ");
+			}
+			System.out.println();
 			System.out.println("Score: " + score);
 			System.out.println();
 			
