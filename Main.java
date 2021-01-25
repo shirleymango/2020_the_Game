@@ -7,6 +7,7 @@ public class Main {
 	private static Event event2;
 	private static int score = 0;
 	private static int numOfLives = 3;
+	private static int numOfPoints;
 	
 	//TODO perhaps give points based on time, show time line at end of game
 	
@@ -51,7 +52,9 @@ public class Main {
 		String input = in.nextLine();
 		while (!input.equals("START")) {
 			System.out.println("Type START to begin.");
+      input = in.nextLine();
 		}
+    System.out.println("-----------------------------------------------------------------");
 		
 		//Instantiating the first pair of events
 		int index = getRandomIndex();
@@ -78,11 +81,18 @@ public class Main {
 			System.out.println("Event 2: " + event2.getName());
 			System.out.println("Date: ?");
 			System.out.println("Does Event 2 occur BEFORE or AFTER Event 1?");
+			long startTime = System.currentTimeMillis();
+			
 			input = in.nextLine();
 			while (!input.equals("BEFORE") && !input.equals("AFTER")) {
 				System.out.println("Invalid input. Please enter only either BEFORE or AFTER.");
 				input = in.nextLine();
 			}
+			
+			long endTime = System.currentTimeMillis();
+			//Calculating points based on speed of response
+			numOfPoints = calculatePoints(startTime, endTime);
+			
 			//Checking the answer
 			checkAnswer(input);
 			System.out.println("-----------------------------------------------------------------");
@@ -102,17 +112,25 @@ public class Main {
 	
 	public static void checkAnswer(String ans) {
 		if (event2.getDate().compareTo(event1.getDate()) < 0 && ans.equals("BEFORE")) {
-			score += 100;
+			score += numOfPoints;
 			System.out.println("Correct! " + event2.getName() + " happened on " + event2.getDate() + ".");
 		}
 		else if (event2.getDate().compareTo(event1.getDate()) > 0 && ans.equals("AFTER")) {
-			score += 100;
+			score += numOfPoints;
 			System.out.println("Correct! " + event2.getName() + " happened on " + event2.getDate() + ".");
 		}
 		else {
 			numOfLives--;
 			System.out.println("Incorrect. " + event2.getName() + " happened on " + event2.getDate() + ".");
 		}
+	}
+	
+	public static int calculatePoints(long startTime, long endTime) {
+		int elapsedTime = (int) ((endTime - startTime) / 1000);
+		if (1000-(elapsedTime-1)*50 >= 50) {
+			return 1000-(elapsedTime-1)*50;
+		}
+		return 50;
 	}
 	
 	public static void setEvent1() {
