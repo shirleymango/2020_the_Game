@@ -8,9 +8,7 @@ public class Main {
 	private static int score = 0;
 	private static int numOfLives = 3;
 	private static int numOfPoints;
-	
-	//TODO perhaps give points based on time, show time line at end of game
-	
+		
 	public static void main(String[] args) {
 		events = new ArrayList<>(Arrays.asList(new Event("Prince Harry and Meghan Markle quit the royal family", "01/08/2020"),
 				new Event("The start of the first impeachment trial of Donald Trump", "01/16/2020"),
