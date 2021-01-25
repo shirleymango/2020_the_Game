@@ -2,6 +2,7 @@ import java.util.*;
 
 public class Main {
 	private static ArrayList<Event> events;
+	private static ArrayList<Event> eventsUsed;
 	private static Scanner in;
 	private static Event event1;
 	private static Event event2;
@@ -35,6 +36,7 @@ public class Main {
 				new Event("Alex Trebek's death", "11/08/2020"),
 				new Event("US Food and Drug Administration approving the emergency use of Pfizer’s COVID-19 shot", "12/11/2020"),
 				new Event("The first Americans receiving the COVID-19 vaccine", "12/14/2020")));
+		eventsUsed = new ArrayList<>();
 		in = new Scanner(System.in);
 		
 		//Printing introduction
@@ -81,13 +83,14 @@ public class Main {
 			System.out.println("Does Event 2 occur BEFORE or AFTER Event 1?");
 			long startTime = System.currentTimeMillis();
 			
+			//Validating input
 			input = in.nextLine();
 			while (!input.equals("BEFORE") && !input.equals("AFTER")) {
 				System.out.println("Invalid input. Please enter only either BEFORE or AFTER.");
 				input = in.nextLine();
 			}
-			
 			long endTime = System.currentTimeMillis();
+			
 			//Calculating points based on speed of response
 			numOfPoints = calculatePoints(startTime, endTime);
 			
@@ -95,13 +98,32 @@ public class Main {
 			checkAnswer(input);
 			System.out.println("-----------------------------------------------------------------");
 			
+			//Add Event 1 to the eventsUsed list
+			Event temp = new Event(event1.getName(), event1.getDate());
+			eventsUsed.add(temp);
+			
 			//Setting Event 1 to be the previous Event 2 and setting Event 2 to a new random event
 			setEvent1();
 			setEvent2();
 		}
+		eventsUsed.add(event1);
+		
+		//Printing GAME OVER menu.
 		System.out.println("Number of Lives: " + numOfLives);
 		System.out.println("Score: " + score);
-		System.out.println("Game Over.");
+		System.out.println("GAME OVER.");
+		System.out.println("Would you like to see your timeline of 2020 events? Enter Y or N.");
+		input = in.nextLine();
+		while (!input.equals("Y") && !input.equals("N")) {
+			System.out.println("Please enter Y or N.");
+			input = in.nextLine();
+		}
+		if (input.equals("Y")) {
+			Collections.sort(eventsUsed);
+			for (Event each: eventsUsed) {
+				System.out.println(each.getDate() + " " + each.getName());
+			}
+		}
 	}
 	
 	public static int getRandomIndex() {
