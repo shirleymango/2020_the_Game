@@ -1,5 +1,5 @@
 
-public class Event {
+public class Event implements Comparable<Event> {
 	//Instance variables
 	private String name;
 	private String date;
@@ -24,6 +24,11 @@ public class Event {
 	}
 	public String getDate() {
 		return date;
+	}
+	
+	//compareTo
+	public int compareTo(Event other) {
+		return -1 * this.name.compareTo(other.name);
 	}
 	
 	//toString
