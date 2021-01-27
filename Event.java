@@ -28,7 +28,7 @@ public class Event implements Comparable<Event> {
 	
 	//compareTo
 	public int compareTo(Event other) {
-		return -1 * this.name.compareTo(other.name);
+		return this.date.compareTo(other.date);
 	}
 	
 	//toString
