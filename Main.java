@@ -29,11 +29,11 @@ public class Main {
 				new Event("An ammonium nitrate explosion hitting Beirut, Lebanon", "08/04/2020"),
 				new Event("Biden naming Kamala Harris as his VP running mate", "08/11/2020"),
 				new Event("Biden officially becoming the Democratic presidential nominee at the Democratic National Convention", "08/18/2020"),
-				new Event("Chadwick Boseman's death", "08/28/2020"),
-				new Event("Ruth Bader Ginsburg's death", "09/18/2020"),
+				new Event("Chadwick Boseman's death (most known for playing Black Panther)", "08/28/2020"),
+				new Event("Ruth Bader Ginsburg's death (most known for being a Supreme Court Justice)", "09/18/2020"),
 				new Event("Trump testing positive for COVID-19", "10/02/2020"),
 				new Event("Joe Biden becoming president-elect", "11/07/2020"),
-				new Event("Alex Trebek's death", "11/08/2020"),
+				new Event("Alex Trebek's death (most known for being the Jeopardy host)", "11/08/2020"),
 				new Event("US Food and Drug Administration approving the emergency use of Pfizer’s COVID-19 shot", "12/11/2020"),
 				new Event("The first Americans receiving the COVID-19 vaccine", "12/14/2020")));
 		eventsUsed = new ArrayList<>();
@@ -45,7 +45,7 @@ public class Main {
 		System.out.println("-~-~-~-~-~-~-~-~-~");
 		System.out.println("Test your knowledge of the 2020 timeline.");
 		System.out.println("-----------------------------------------------------------------");
-		System.out.println("Instructions: Given the name and date of Event 1 and only the name of Event 2, you must guess whether Event 2 happened BEFORE or AFTER Event 1. \nYou have 3 lives and for each incorrect answer, you will lose a life. Good luck!");
+		System.out.println("Instructions: Given the name and date of Event 1 and only the name of Event 2, you must guess whether Event 2 happened BEFORE or AFTER Event 1. \nYou have 3 lives and for each incorrect answer, you will lose a life. The faster you answer, the more points you will earn. Good luck!");
 		
 		//Start game
 		System.out.println("Type START to begin.");
@@ -64,7 +64,7 @@ public class Main {
 		event2 = events.get(index);
 		events.remove(index);
 		
-		while (numOfLives > 0) {
+		while (numOfLives > 0 && events.size() > 0) {
 			//Printing the current score and number of lives
 			System.out.print("Lives: ");
 			for (int i = 0; i < numOfLives; i++) {
